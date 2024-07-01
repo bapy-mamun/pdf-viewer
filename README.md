@@ -10,6 +10,14 @@ This project is a 3D knowledge graph viewer for PDF files using React, TypeScrip
 - **react-three-fiber**: A React renderer for Three.js.
 - **@react-three/drei**: A collection of useful helpers for react-three-fiber.
 
+## Prerequisites
+
+To run this project, you need to have the following software installed:
+
+- **Node.js**: v14.x or v16.x (latest LTS version is recommended)
+- **npm**: v6.x or v7.x (comes with Node.js)
+- **TypeScript**: v4.x
+
 ## Installation
 
 1. Clone the repository:
