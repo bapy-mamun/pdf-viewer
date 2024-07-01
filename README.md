@@ -29,3 +29,5 @@ This project is a 3D knowledge graph viewer for PDF files using React, TypeScrip
    ```bash
    npm start
    ```
+
+4. Open [http://localhost:3000](http://localhost:3000) to view the app.
