@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Line, Html } from "@react-three/drei";
 import EditableEdge from "../editable-edge";
 import { Edge as EdgeType } from "../../types";
+import { graphData } from "../../data/graphData";
 
 interface EdgeProps {
   edge: EdgeType;
@@ -20,18 +21,39 @@ const Edge: React.FC<EdgeProps> = ({ edge, onEdit }) => {
     onEdit(edge.id, newValue);
   };
 
+  const getNodePosition = (id: number): [number, number, number] => {
+    const node = graphData.nodes.find((node) => node.id === id);
+    if (node) {
+      const index = graphData.nodes.indexOf(node);
+      const nodeCount = graphData.nodes.length;
+      const angleIncrement = (2 * Math.PI) / nodeCount;
+      const angle = index * angleIncrement;
+      const radius = 5;
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
+      return [x, y, 0];
+    }
+    return [0, 0, 0];
+  };
+
+  const sourcePosition = getNodePosition(edge.source);
+  const targetPosition = getNodePosition(edge.target);
+
   return (
     <>
       <Line
-        points={[
-          [edge.source * 2, 0, 0],
-          [edge.target * 2, 0, 0],
-        ]}
+        points={[sourcePosition, targetPosition]}
         color="blue"
         lineWidth={1}
         onClick={handleClick}
       />
-      <Html position={[((edge.source + edge.target) / 2) * 2, 0, 0]}>
+      <Html
+        position={[
+          (sourcePosition[0] + targetPosition[0]) / 2,
+          (sourcePosition[1] + targetPosition[1]) / 2,
+          0,
+        ]}
+      >
         {isEditing ? (
           <EditableEdge value={edge.value} onSave={handleSave} />
         ) : (

@@ -1,16 +1,17 @@
-import React from "react";
+import React from 'react';
 import { Text } from "@react-three/drei";
 import { Node as NodeType } from "../../types";
 
 interface NodeProps {
   node: NodeType;
+  position: [number, number, number];
 }
 
-const Node: React.FC<NodeProps> = ({ node }) => {
+const Node: React.FC<NodeProps> = ({ node, position }) => {
   return (
-    <mesh position={[node.id * 2, 0, 0]}>
+    <mesh position={position}>
       <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial color={"orange"} />
+      <meshStandardMaterial color={'gray'} />
       <Text
         position={[0, 1, 0]}
         fontSize={0.5}

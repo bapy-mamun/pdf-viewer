@@ -4,8 +4,8 @@ import Graph from "./components/graph";
 
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="main">
+      <h1>3D PDF Graph Viewer</h1>
       <Graph />
     </div>
   );
