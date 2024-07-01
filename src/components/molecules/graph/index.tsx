@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import Node from "../node";
-import Edge from "../edge";
-import { graphData } from "../../data/graphData";
-import { Edge as EdgeType } from "../../types";
+import Node from "../../atoms/node";
+import Edge from "../../atoms/edge";
+import { graphData } from "../../../data/graphData";
+import { Edge as EdgeType } from "../../../types";
 
 const Graph: React.FC = () => {
   const [edges, setEdges] = useState<EdgeType[]>(graphData.edges);

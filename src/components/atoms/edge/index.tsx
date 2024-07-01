@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Line, Html } from "@react-three/drei";
 import EditableEdge from "../editable-edge";
-import { Edge as EdgeType } from "../../types";
-import { graphData } from "../../data/graphData";
+import { Edge as EdgeType } from "../../../types";
+import { graphData } from "../../../data/graphData";
 
 interface EdgeProps {
   edge: EdgeType;

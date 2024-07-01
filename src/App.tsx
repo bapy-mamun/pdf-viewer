@@ -1,6 +1,5 @@
-import React from "react";
 import "./App.css";
-import Graph from "./components/graph";
+import Graph from "./components/molecules/graph";
 
 function App() {
   return (
