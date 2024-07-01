@@ -1,26 +1,43 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { Line, Html } from '@react-three/drei';
+import EditableEdge from '../editable-edge';
+import { Edge as EdgeType } from '../../types';
 
 interface EdgeProps {
-  value: string;
-  onSave: (newValue: string) => void;
+  edge: EdgeType;
+  onEdit: (id: number, newValue: string) => void;
 }
 
-const Edge: React.FC<EdgeProps> = ({ value, onSave }) => {
-  const [inputValue, setInputValue] = useState(value);
+const Edge: React.FC<EdgeProps> = ({ edge, onEdit }) => {
+  const [isEditing, setEditing] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleClick = () => {
+    setEditing(true);
   };
 
-  const handleSave = () => {
-    onSave(inputValue);
+  const handleSave = (newValue: string) => {
+    setEditing(false);
+    onEdit(edge.id, newValue);
   };
 
   return (
-    <div>
-      <input type="text" value={inputValue} onChange={handleChange} />
-      <button onClick={handleSave}>Save</button>
-    </div>
+    <>
+      <Line
+        points={[[edge.source * 2, 0, 0], [edge.target * 2, 0, 0]]}
+        color="blue"
+        lineWidth={1}
+        onClick={handleClick}
+      />
+      <Html position={[(edge.source + edge.target) / 2 * 2, 0, 0]}>
+        {isEditing ? (
+          <EditableEdge value={edge.value} onSave={handleSave} />
+        ) : (
+          <div onClick={handleClick} style={{ cursor: 'pointer', backgroundColor: 'white', padding: '2px', borderRadius: '3px' }}>
+            {edge.value}
+          </div>
+        )}
+      </Html>
+    </>
   );
 };
 
